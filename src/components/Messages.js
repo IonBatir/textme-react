@@ -1,6 +1,7 @@
 import React from "react";
 import { fetchMessages } from "../api";
 import { getFormatedDate, getFormatedTime } from "../utils";
+import avatar from "../assets/images/avatar.png";
 
 export default function Messages({ conversation }) {
   const [messages, setMessages] = React.useState({ data: [], loading: true });
@@ -22,23 +23,32 @@ export default function Messages({ conversation }) {
   return (
     <div class="mesgs">
       <div class="msg_history">
-        {messages.data.map(message => (
-          <div class={message.my ? "outgoing_msg" : "incoming_msg"}>
-            {message.my || (
-              <div class="incoming_msg_img">
-                <img src={message.avatar} alt={message.from} />
-              </div>
-            )}
-            <div class="received_msg">
-              <div class="received_withd_msg">
+        {messages.data.map(message =>
+          message.my ? (
+            <div class="outgoing_msg">
+              <div class="sent_msg">
                 <p>{message.text}</p>
                 <span class="time_date">{`${getFormatedTime(
                   message.timestamp
                 )} | ${getFormatedDate(message.timestamp)}`}</span>
               </div>
             </div>
-          </div>
-        ))}
+          ) : (
+            <div class="incoming_msg">
+              <div class="incoming_msg_img">
+                <img src={message.avatar || avatar} alt="Partner" />
+              </div>
+              <div class="received_msg">
+                <div class="received_withd_msg">
+                  <p>{message.text}</p>
+                  <span class="time_date">{`${getFormatedTime(
+                    message.timestamp
+                  )} | ${getFormatedDate(message.timestamp)}`}</span>
+                </div>
+              </div>
+            </div>
+          )
+        )}
       </div>
       <div class="type_msg">
         <div class="input_msg_write">
