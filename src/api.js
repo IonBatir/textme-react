@@ -1,5 +1,5 @@
 import { auth, firestore, storage, initializeApp } from "firebase";
-import firebaseConfig from "firebaseConfig";
+import firebaseConfig from "./firebaseConfig";
 
 initializeApp(firebaseConfig);
 
