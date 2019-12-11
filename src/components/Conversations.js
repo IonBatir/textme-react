@@ -41,9 +41,11 @@ export default function Conversations({
               "active_chat"}`}
           >
             <div class="chat_people">
-              <div class="chat_img">
-                <img src={conversation.avatar} alt={conversation.name} />
-              </div>
+              {conversation.avatar && (
+                <div class="chat_img">
+                  <img src={conversation.avatar} alt={conversation.name} />
+                </div>
+              )}
               <div class="chat_ib">
                 <h5>
                   {conversation.name}
